@@ -725,7 +725,7 @@ function resign {
         OLD_BUNDLE_ID="$(PlistBuddy -c "Print :CFBundleIdentifier" "$TEMP_DIR/oldInfo.plist")"
         NEW_BUNDLE_ID="$(bundle_id_for_provison "$NEW_PROVISION")"
         log "Replacing old bundle ID '$OLD_BUNDLE_ID' with new bundle ID '$NEW_BUNDLE_ID' in patched entitlements"
-        sed -i .bak "s/$OLD_BUNDLE_ID/$NEW_BUNDLE_ID/g" "$PATCHED_ENTITLEMENTS"
+        sed -i .bak "s/$OLD_BUNDLE_ID\</$NEW_BUNDLE_ID\</g" "$PATCHED_ENTITLEMENTS"
 
         log "Removing blacklisted keys from patched profile"
         # See https://github.com/facebook/buck/issues/798 and https://github.com/facebook/buck/pull/802/files
